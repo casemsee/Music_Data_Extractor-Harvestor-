@@ -1,0 +1,6 @@
+,album,song,artist,key_features,cleaned_key_features,track_uri,energy,loudness,speechiness,valence,liveness,tempo,danceability,acousticness,instrumentalness,popularity
+0,Rockstar,Phir Se Ud Chala,Mohit Chauhan,RockstarPhir Se Ud ChalaMohit Chauhan,rockstar phir se ud chala mohit chauhan,spotify:track:1kcV2LJxt5v0s2cEGtEJ5i,0.656,-8.632,0.0354,0.453,0.343,119.965,0.647,0.657,0.000163,60
+1,Rockstar,Jo Bhi Main,Mohit Chauhan,RockstarJo Bhi MainMohit Chauhan,rockstar jo main mohit chauhan,spotify:track:2MmAYegcUty1DmG0Gw7AMh,0.565,-7.561,0.0286,0.394,0.125,135.986,0.558,0.58,1.91e-05,53
+2,Rockstar,Katiya Karun,Harshdeep Kaur,RockstarKatiya KarunHarshdeep Kaur,rockstar katiya karun harshdeep kaur,spotify:track:1qPhMBWYNCxVwMGARrySde,0.705,-8.307,0.0712,0.928,0.0591,175.973,0.644,0.627,3.79e-06,51
+3,Rockstar,Sheher Mein,"Mohit Chauhan, Karthik","RockstarSheher MeinMohit Chauhan, Karthik",rockstar sheher mein mohit chauhan karthik,spotify:track:38uWiiaOVsaZNarFJONJhf,0.658,-9.102,0.418,0.805,0.0778,90.973,0.793,0.386,2.97e-06,47
+4,Rockstar,Tango For Taj,A.R. Rahman,RockstarTango For TajA.R. Rahman,rockstar tango rahman,spotify:track:3mLdsGVuIG0jJAn8dQFvqU,0.312,-10.24,0.0319,0.646,0.32,131.97,0.632,0.322,0.00889,41
