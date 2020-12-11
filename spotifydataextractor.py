@@ -95,31 +95,31 @@ class SpotifyDataExtractor:
                 print('Loop #: {}'.format(request_count))
                 print('Elapsed Time: {} seconds'.format(time.time() - start_time))
         
-        genre_dict = {}
-        genre_dict['album'] = []
-        genre_dict['track_number'] = []
-        genre_dict['id'] = []
-        genre_dict['name'] = []
-        genre_dict['uri'] = []
-        genre_dict['acousticness'] = []
-        genre_dict['danceability'] = []
-        genre_dict['energy'] = []
-        genre_dict['instrumentalness'] = []
-        genre_dict['liveness'] = []
-        genre_dict['loudness'] = []
-        genre_dict['speechiness'] = []
-        genre_dict['tempo'] = []
-        genre_dict['valence'] = []
-        genre_dict['popularity'] = []
+        spotify_data_dict = {}
+        spotify_data_dict['album'] = []
+        spotify_data_dict['track_number'] = []
+        spotify_data_dict['id'] = []
+        spotify_data_dict['name'] = []
+        spotify_data_dict['uri'] = []
+        spotify_data_dict['acousticness'] = []
+        spotify_data_dict['danceability'] = []
+        spotify_data_dict['energy'] = []
+        spotify_data_dict['instrumentalness'] = []
+        spotify_data_dict['liveness'] = []
+        spotify_data_dict['loudness'] = []
+        spotify_data_dict['speechiness'] = []
+        spotify_data_dict['tempo'] = []
+        spotify_data_dict['valence'] = []
+        spotify_data_dict['popularity'] = []
         for album in self.spotify_albums: 
             for feature in self.spotify_albums[album]:
-                genre_dict[feature].extend(self.spotify_albums[album][feature])
+                spotify_data_dict[feature].extend(self.spotify_albums[album][feature])
                 
-        genre_df = pd.DataFrame(genre_dict)
-        genre_df['artist'] = self.artist_name
-        genre_df = genre_df.sort_values('popularity', ascending=False).drop_duplicates('name').sort_index()
-        genre_df.to_csv('{}_data.csv'.format(str(time.time())), index=False)
-        print('Dataframe exported to csv')
+        spotify_data = pd.DataFrame(spotify_data_dict)
+        spotify_data['artist'] = self.artist_name
+        spotify_data = spotify_data.sort_values('popularity', ascending=False).drop_duplicates('name').sort_index()
+#         spotify_data.to_csv('{}_data.csv'.format(str(time.time())), index=False)
+#         print('Dataframe exported to csv')
         start_time = time.time()
         print('Data transfer to sql table started...')
         genre_df.to_sql('WKR_SPOTIFY_DATA', con=self.conn, if_exists='append', index=False, method='multi', chunksize=100)
