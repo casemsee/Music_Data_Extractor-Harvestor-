@@ -4,9 +4,9 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from sqlalchemy import create_engine
 
-project_folder = os.path.expanduser(r'C:\Users\sriva\Desktop\edu.usf.sas.pal.muser\SpotifyDataExtractor')
+project_folder = os.path.expanduser(r'C:\Users\sriva\OneDrive\Desktop\MusicDataExtractor')
 load_dotenv(os.path.join(project_folder, '.env'))
-os.chdir(r'C:\Users\sriva\Desktop\edu.usf.sas.pal.muser\SpotifyDataExtractor')
+os.chdir(r'C:\Users\sriva\OneDrive\Desktop\MusicDataExtractor')
 
 class ConnectionManager:
     def __init__(self):

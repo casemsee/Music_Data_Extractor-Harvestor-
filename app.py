@@ -2,14 +2,13 @@ from flask import Flask,request, url_for, redirect, render_template
 app = Flask(__name__)
 
 import os
-import time
 import logging
 import pandas as pd
 from ConnectionManager import ConnectionManager
-from spotifydataextractor import SpotifyDataExtractor
+from spotifydataharvester import SpotifyDataHarvester
 from ETL import ETL
 
-os.chdir(r'C:\Users\sriva\Desktop\edu.usf.sas.pal.muser\SpotifyDataExtractor')
+os.chdir(r'C:\Users\sriva\OneDrive\Desktop\MusicDataExtractor')
 logging.basicConfig(level='DEBUG', filename='project_logs.log')
 
 connection_manager = ConnectionManager()
@@ -19,32 +18,30 @@ engine = connection_manager.database_connection()
 raw_file = pd.read_csv('sample_music_data.csv')
 
 @app.route('/')
-def hello_world():
+def home():
     return render_template("index.html")
 
 @app.route('/extract',methods=['POST','GET'])
 def extract():
     try:
         input_query = request.form
-        print(input_query)
-        genre = input_query['genre']
-        genre_data = sp.search(genre)
+        input_query = input_query['query']
+        spotify_data = sp.search(input_query)
         artist_list = {}
-
-        for i in range(len(genre_data['tracks']['items'])):
-            for j in range(len(genre_data['tracks']['items'][i]['artists'])):
-                artist_list[genre_data['tracks']['items'][i]['artists'][j]['uri']] = genre_data['tracks']['items'][i]['artists'][j]['name']
-        print('{} uris found for the {} genre'.format(len(artist_list), genre))
+        for i in range(len(spotify_data['tracks']['items'])):
+            for j in range(len(spotify_data['tracks']['items'][i]['artists'])):
+                artist_list[spotify_data['tracks']['items'][i]['artists'][j]['uri']] = spotify_data['tracks']['items'][i]['artists'][j]['name']
+        print('{} uris found for the {} genre'.format(len(artist_list), input_query))
         for uri, name in artist_list.items():
-            extractor = SpotifyDataExtractor(sp, uri, name, engine)
-            extractor.build_dataframe()
-        print('Data extraction completed for the genre {}.'.format(genre))
+            extractor = SpotifyDataHarvester(sp, uri, name, engine)
+            extractor.dump_raw_data()
+        print('Data extraction completed for the genre {}.'.format(input_query))
         etl = ETL(engine)
         etl.build_final_table()
         print('Final table ready for analysis')
-        return render_template('index.html', msg='Extraction completed' )
-    except:
-        print('An error occured...')
+        return render_template('index.html', msg='Harvest completed')
+    except Exception as e:
+        print(e)
 
 if __name__ == '__main__':
     app.run()

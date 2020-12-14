@@ -16,8 +16,15 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   background-image: url('/static/music.jpg');
   min-height: 100%;
 }
+.bgimgharvester {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('/static/harvester.jpg');
+  min-height: 100%;
+}
 </style>
-<body>
+<body style="height: 100vh">
 
 <!-- Sidebar with image -->
 <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
@@ -38,45 +45,42 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 </nav>
 
 <!-- Page Content -->
-<div class="w3-main w3-padding-large" style="margin-left:40%">
+<div class="w3-main w3-padding-large" style="margin-left:40%; ">
 
   <!-- Menu icon to open sidebar -->
 
-<header class="w3-container w3-xlarge">
-    <p class="w3-centre">Muser Spotify Extractor   </p>
+<header class="w3-container" style="font-size:40px !important; margin-bottom: 0 !important;">
+    <p class="w3-centre" style="text-align: center"> <span style="color: sandybrown; font-weight: bolder;"> Music </span> <span class="" style="color: black; font-size: 50px; font-weight: bolder"> Data  Harvester </span>
 
     </p>
   </header>
 
   <!-- Contact Section -->
-  <div class="w3-padding-16 w3-content w3-text-grey" id="contact" style="margin-bottom:64px">
-      <form action="/extract"  method="post" >
+  <div class="w3-padding-16 w3-content w3-text-grey" id="contact" >
+      <form action="/extract"  method="post" style="text-align: center">
 
-      <p><input class="w3-input w3-padding-4 w3-border" type="text" placeholder="Enter genre of music"   id="1"  name="genre"></p>
+      <p style="padding:0 5em"><input class="w3-input w3-padding-4 w3-border form-control" style="border-radius: 5px; box-shadow: 1px 2px 100px -10px " type="text" placeholder="&#x1F50E Search ..."   id="1"  name="query"></p>
 
 
-     <p>
-        <button class="w3-button w3-light-grey w3-padding-large " type="submit">
-          <i class="fa fa-paper-plane"></i> Extract
+     <p style="text-align: center; padding:0 5em">
+        <button class="w3-button w3-light-grey w3-padding-large " type="submit" onclick="myFunction()"  style="border-radius: 5px; background-image: linear-gradient(sandybrown, #000); color: white !important;">
+ Harvest <i id="myDIV" style="display: none" class="fa fa-spin fa-spinner"></i>
         </button>
-<span class="w3-large w3-text-black w3-margin-right">{{msg}}</span>
       </p>
+          <span class="w3-large w3-text-black w3-margin-right" style="color: #0f9d58">{{ msg }} </span>
       </form>
-          <form action="/retrain_model"  method="post" >
-       <p>
-        <button class="w3-button w3-light-grey w3-padding-large " type="submit">
-          <i class="fa fa-paper-plane"></i> Retrain Model
-        </button>
-<span class="w3-large w3-text-black w3-margin-right">{{msg}}</span>
-      </p>
+{#          <form action="/retrain_model"  method="post" >#}
+{#       <p>#}
+{#        <button class="w3-button w3-light-grey w3-padding-large " type="submit">#}
+{#          <i class="fa fa-paper-plane"></i> Retrain Model#}
+{#        </button>#}
+{#<span class="w3-large w3-text-black w3-margin-right">{{msg}}</span>#}
+{#      </p>#}
+{##}
+{#    </form>#}
 
-    </form>
 
-      <p><span class="w3-large w3-text-black w3-margin-right"></span> </p>
-      <p><span class="w3-large w3-text-black w3-margin-right"></span> </p>
-         <p><span class="w3-large w3-text-black w3-margin-right"></span> </p>
-         <p><span class="w3-large w3-text-black w3-margin-right"></span> </p>
-      <p><span class="w3-large w3-text-black w3-margin-right">Copyright (C) 2019-2020 Ankit R</span> </p>
+      <p style="position: fixed; bottom: 1em; right: 1em"><span class="w3-large w3-text-black w3-margin-right" style="font-weight: bold">Copyright © 2020-2021 Ankit R</span> </p>
 
   <!-- End Contact Section -->
   </div>
@@ -92,6 +96,14 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 function openNav() {
   document.getElementById("mySidebar").style.width = "60%";
   document.getElementById("mySidebar").style.display = "block";
+}
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "inline-block";
+  } else {
+    x.style.display = "none";
+  }
 }
 
 function closeNav() {
