@@ -1,0 +1,1 @@
+https://medium.com/analytics-vidhya/data-harvesting-simplified-using-python-flask-and-sql-d7049fa14bea
